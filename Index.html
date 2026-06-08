@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Tenant Rights</title>
+    <style>
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333; line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ===== DARK MODE ===== */
+body.dark { background: #121212; color: #e0e0e0; }
+body.dark nav { background-color: #0a1a2e; }
+body.dark .section { background-color: #1a1a2e; }
+body.dark .section.alt { background-color: #16213e; }
+body.dark .card { background-color: #1e2a3a; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+body.dark .card h3 { color: #7ab8ff; }
+body.dark .section h2 { color: #7ab8ff; }
+body.dark .section > p { color: #aaa; }
+body.dark .card p, body.dark .card ul { color: #bbb; }
+body.dark footer { background-color: #0a1a2e; }
+body.dark .faq-item { background: #1e2a3a; border-color: #2a3a4a; }
+body.dark .faq-question { color: #7ab8ff; }
+body.dark .faq-answer { color: #bbb; }
+body.dark .disclaimer-banner { background: #1a2a1a; border-color: #2a4a2a; color: #a0d0a0; }
+body.dark .letter-box { background: #1e2a3a; border-color: #2a3a4a; color: #ddd; }
+body.dark .checklist-item label { color: #ccc; }
+body.dark .quiz-option { background: #1e2a3a; border-color: #2a3a4a; color: #ccc; }
+body.dark .progress-bar-track { background: #2a3a4a; }
+body.dark #rent-result { background: #1e3a1e; color: #a0d0a0; }
+body.dark .share-btn { background: #1e2a3a; color: #7ab8ff; border-color: #2a3a4a; }
+
+/* ===== DISCLAIMER BANNER ===== */
+.disclaimer-banner {
+    background: #e8f5e9; border-bottom: 2px solid #28a745;
+    color: #1a6e2e; padding: 12px 30px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.9rem; gap: 10px; flex-wrap: wrap;
+}
+.disclaimer-banner span { flex: 1; }
+.dismiss-btn {
+    background: none; border: 1px solid #1a6e2e; color: #1a6e2e;
+    padding: 4px 12px; border-radius: 20px; cursor: pointer;
+    font-size: 0.85rem; white-space: nowrap; transition: all 0.2s;
+}
+.dismiss-btn:hover { background: #1a6e2e; color: white; }
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar-track {
+    position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+    background: #e0e0e0; z-index: 2000;
+}
+.progress-bar-fill {
+    height: 100%; background: linear-gradient(90deg, #0066cc, #28a745);
+    width: 0%; transition: width 0.1s;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+    background-color: #003366; padding: 15px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    flex-wrap: wrap; gap: 10px;
+}
+.logo { color: white; font-size: 1.4rem; font-weight: bold; letter-spacing: 1px; }
+nav ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+nav ul li a { color: #cce0ff; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+nav ul li a:hover, nav ul li a.active { color: #fff; border-bottom: 2px solid #fff; }
+.dark-toggle {
+    background: none; border: 1px solid #cce0ff; color: #cce0ff;
+    padding: 5px 12px; border-radius: 20px; cursor: pointer;
+    font-size: 0.85rem; transition: all 0.3s;
+}
+.dark-toggle:hover { background: #cce0ff; color: #003366; }
+
+/* ===== HERO ===== */
+.hero {
+    background: linear-gradient(135deg, #003366, #0066cc);
+    color: white; text-align: center; padding: 90px 20px 60px;
+}
+.hero h1 { font-size: 2.6rem; margin-bottom: 15px; line-height: 1.3; }
+.hero > p { font-size: 1.15rem; margin-bottom: 30px; color: #cce0ff; }
+.btn {
+    background-color: #ffffff; color: #003366; padding: 13px 32px;
+    border-radius: 30px; text-decoration: none; font-weight: bold;
+    font-size: 1rem; transition: all 0.3s; display: inline-block;
+}
+.btn:hover { background-color: #cce0ff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+/* ===== SEARCH ===== */
+#search-container { margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+#search-input {
+    padding: 12px 20px; border-radius: 30px; border: none;
+    font-size: 1rem; width: 320px; outline: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+#search-btn {
+    padding: 12px 24px; border-radius: 30px; border: none;
+    background-color: #28a745; color: white; font-size: 1rem;
+    font-weight: bold; cursor: pointer; transition: all 0.3s;
+}
+#search-btn:hover { background-color: #1a6e2e; transform: translateY(-2px); }
+
+/* ===== SECTIONS ===== */
+.section { padding: 65px 40px; background-color: #ffffff; }
+.section.alt { background-color: #f4f8ff; }
+.section h2 { font-size: 1.9rem; color: #003366; margin-bottom: 10px; text-align: center; }
+.section > p { text-align: center; color: #555; margin-bottom: 35px; font-size: 1.05rem; }
+
+/* ===== CARDS ===== */
+.card-container { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; max-width: 1100px; margin: 0 auto; }
+.card {
+    background-color: #ffffff; border-radius: 12px; padding: 28px;
+    flex: 1 1 280px; max-width: 340px;
+    box-shadow: 0 4px 15px rgba(0,51,102,0.1);
+    border-top: 4px solid #0066cc;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,51,102,0.2); }
+.card.visible { opacity: 1; transform: translateY(0); }
+.card h3 { color: #003366; margin-bottom: 12px; font-size: 1.1rem; }
+.card p { color: #555; margin-bottom: 10px; font-size: 0.95rem; }
+.card ul { padding-left: 18px; color: #555; font-size: 0.95rem; }
+.card ul li { margin-bottom: 7px; }
+
+/* ===== GET HELP ===== */
+#help .card { border-top: 4px solid #28a745; }
+#help .card h3 { color: #1a6e2e; }
+.copy-btn {
+    margin-top: 10px; background: #003366; color: white;
+    border: none; padding: 7px 16px; border-radius: 20px;
+    cursor: pointer; font-size: 0.85rem; transition: all 0.3s;
+}
+.copy-btn:hover { background: #0066cc; }
+.copy-btn.copied { background: #28a745; }
+
+/* ===== RENT CALCULATOR ===== */
+#calculator { max-width: 500px; margin: 0 auto; }
+.calc-row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+.calc-row input {
+    flex: 1; padding: 12px 16px; border-radius: 10px;
+    border: 2px solid #cce0ff; font-size: 1rem; outline: none;
+    transition: border 0.3s;
+}
+.calc-row input:focus { border-color: #0066cc; }
+.calc-btn {
+    width: 100%; padding: 13px; background: #003366; color: white;
+    border: none; border-radius: 10px; font-size: 1rem;
+    font-weight: bold; cursor: pointer; transition: all 0.3s;
+}
+.calc-btn:hover { background: #0066cc; }
+#rent-result {
+    margin-top: 15px; padding: 15px 20px; border-radius: 10px;
+    background: #e8f5e9; color: #1a6e2e; font-weight: bold;
+    font-size: 1.1rem; text-align: center; display: none;
+}
+
+/* ===== LETTER TEMPLATES ===== */
+.letter-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; }
+.tab-btn {
+    padding: 9px 20px; border-radius: 25px; border: 2px solid #0066cc;
+    background: none; color: #0066cc; cursor: pointer; font-size: 0.9rem;
+    font-weight: 600; transition: all 0.3s;
+}
+.tab-btn.active, .tab-btn:hover { background: #0066cc; color: white; }
+.letter-box {
+    background: #f9fbff; border: 1px solid #dde8ff; border-radius: 12px;
+    padding: 28px; max-width: 750px; margin: 0 auto;
+    font-family: 'Courier New', monospace; font-size: 0.9rem;
+    line-height: 1.8; color: #333; white-space: pre-wrap;
+    display: none;
+}
+.letter-box.active { display: block; }
+.letter-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
+.letter-copy-btn, .letter-reset-btn {
+    padding: 10px 22px; border-radius: 25px; border: none;
+    font-size: 0.9rem; font-weight: bold; cursor: pointer; transition: all 0.3s;
+}
+.letter-copy-btn { background: #003366; color: white; }
+.letter-copy-btn:hover { background: #0066cc; }
+.letter-reset-btn { background: #f0f0f0; color: #555; }
+.letter-reset-btn:hover { background: #ddd; }
+.letter-note { text-align: center; color: #888; font-size: 0.85rem; margin-top: 10px; font-style: italic; }
+
+/* ===== CHECKLISTS ===== */
+.checklist-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; }
+.checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; max-width: 850px; margin: 0 auto; }
+.checklist-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: #f9fbff; border-radius: 10px; padding: 14px 16px;
+    border: 1px solid #dde8ff; transition: all 0.3s;
+}
+.checklist-item input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; cursor: pointer; accent-color: #0066cc; flex-shrink: 0; }
+.checklist-item label { cursor: pointer; font-size: 0.95rem; color: #333; transition: color 0.3s; }
+.checklist-item.done label { text-decoration: line-through; color: #aaa; }
+.checklist-progress { text-align: center; color: #555; font-size: 0.95rem; margin-bottom: 20px; }
+.checklist-progress strong { color: #0066cc; }
+.checklist-reset-btn {
+    display: block; margin: 18px auto 0; padding: 9px 22px;
+    border-radius: 25px; border: 2px solid #0066cc; background: none;
+    color: #0066cc; font-size: 0.9rem; cursor: pointer; transition: all 0.3s;
+}
+.checklist-reset-btn:hover { background: #0066cc; color: white; }
+
+/* ===== FAQ ACCORDION ===== */
+.faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: #f9fbff; border: 1px solid #dde8ff; border-radius: 12px; overflow: hidden; }
+.faq-question {
+    width: 100%; text-align: left; padding: 18px 22px;
+    background: none; border: none; font-size: 1rem;
+    font-weight: 600; color: #003366; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: color 0.3s;
+}
+.faq-question:hover { color: #0066cc; }
+.faq-question .faq-icon { font-size: 1.2rem; transition: transform 0.3s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; padding: 0 22px; color: #555; font-size: 0.95rem; }
+.faq-item.open .faq-answer { max-height: 300px; padding: 0 22px 18px; }
+
+/* ===== QUIZ ===== */
+#quiz-container { max-width: 650px; margin: 0 auto; }
+.quiz-question-text { font-size: 1.1rem; font-weight: 600; color: #003366; margin-bottom: 18px; text-align: center; }
+body.dark .quiz-question-text { color: #7ab8ff; }
+.quiz-options { display: flex; flex-direction: column; gap: 12px; }
+.quiz-option {
+    padding: 14px 20px; border-radius: 10px; border: 2px solid #dde8ff;
+    background: #f9fbff; cursor: pointer; font-size: 0.95rem; color: #333;
+    text-align: left; transition: all 0.2s;
+}
+.quiz-option:hover { border-color: #0066cc; background: #eef5ff; }
+.quiz-option.correct { background: #e8f5e9; border-color: #28a745; color: #1a6e2e; font-weight: bold; }
+.quiz-option.wrong { background: #fdecea; border-color: #dc3545; color: #721c24; }
+.quiz-feedback { margin-top: 15px; padding: 12px 18px; border-radius: 10px; font-size: 0.95rem; text-align: center; display: none; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: #e8f5e9; color: #1a6e2e; }
+.quiz-feedback.wrong { background: #fdecea; color: #721c24; }
+.quiz-nav { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+.quiz-btn {
+    padding: 11px 26px; border-radius: 25px; border: none;
+    background: #003366; color: white; font-size: 0.95rem;
+    font-weight: bold; cursor: pointer; transition: all 0.3s; display: none;
+}
+.quiz-btn:hover { background: #0066cc; }
+.quiz-score { text-align: center; font-size: 1.2rem; color: #003366; font-weight: bold; padding: 20px; display: none; }
+body.dark .quiz-score { color: #7ab8ff; }
+.quiz-counter { text-align: center; color: #888; font-size: 0.9rem; margin-bottom: 12px; }
+
+/* ===== SHARE ===== */
+.share-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+.share-btn {
+    padding: 10px 22px; border-radius: 25px; border: 2px solid #dde8ff;
+    background: #f9fbff; color: #003366; font-size: 0.9rem;
+    font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 7px;
+}
+.share-btn:hover { background: #003366; color: white; border-color: #003366; }
+
+/* ===== FOOTER ===== */
+footer { background-color: #003366; color: #cce0ff; text-align: center; padding: 30px 20px; font-size: 0.88rem; line-height: 2; }
+footer .footer-copy { color: #aaccee; font-size: 0.8rem; margin-top: 8px; }
+
+/* ===== BACK TO TOP ===== */
+#backToTop {
+    display: none; position: fixed; bottom: 28px; right: 28px;
+    background-color: #003366; color: white; border: none;
+    padding: 11px 17px; border-radius: 30px; cursor: pointer;
+    font-size: 0.88rem; box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transition: all 0.3s; z-index: 999;
+}
+#backToTop:hover { background-color: #0066cc; transform: translateY(-2px); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    nav { flex-direction: column; padding: 15px 20px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .hero h1 { font-size: 1.75rem; }
+    .hero > p { font-size: 1rem; }
+    .section { padding: 45px 18px; }
+    .card { max-width: 100%; }
+    .calc-row { flex-direction: column; }
+}
+    </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+<!-- Disclaimer Banner -->
+<div class="disclaimer-banner" id="disclaimerBanner">
+    <span>⚠️ <strong>Important:</strong> This website provides general guidance only and is <strong>not legal advice</strong>. Laws can change — always verify information and consult a qualified solicitor for your specific situation.</span>
+    <button class="dismiss-btn" onclick="document.getElementById('disclaimerBanner').style.display='none'">Got it ✓</button>
+</div>
+
+<!-- New Law Alert Banner -->
+<div style="background:#fff3cd;border-bottom:2px solid #ffc107;color:#664d03;padding:12px 30px;display:flex;justify-content:space-between;align-items:center;font-size:0.9rem;gap:10px;flex-wrap:wrap;" id="newLawBanner">
+    <span>🆕 <strong>New Law:</strong> The Renters' Rights Act 2025 came into force on <strong>1 May 2026</strong>. Section 21 "no fault" evictions have been abolished and all tenants now have stronger rights. <a href="#eviction" style="color:#664d03;font-weight:bold;">Find out more ↓</a></span>
+    <button class="dismiss-btn" style="border-color:#664d03;color:#664d03;" onclick="document.getElementById('newLawBanner').style.display='none'">Got it ✓</button>
+</div>
+<nav>
+    <div class="logo">⚖️ UK Tenant Rights</div>
+    <ul>
+        <li><a href="#deposits">Deposits</a></li>
+        <li><a href="#repairs">Repairs</a></li>
+        <li><a href="#eviction">Eviction</a></li>
+        <li><a href="#agreements">Agreements</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#help">Get Help</a></li>
+    </ul>
+    <button class="dark-toggle" id="darkToggle">🌙 Dark Mode</button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>Know Your Rights as a Tenant in the UK</h1>
+    <p>Free, clear and original guidance for tenants in England and Wales — updated for the Renters' Rights Act 2025</p>
+    <a href="#deposits" class="btn">Get Started</a>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="🔍 Search e.g. deposit, eviction, repairs…" />
+        <button id="search-btn">Search</button>
+    </div>
+</section>
+
+<!-- Deposits -->
+<section id="deposits" class="section">
+    <h2>🏦 Deposits</h2>
+    <p>Your landlord must protect your deposit in a government-approved scheme within 30 days of receiving it.</p>
+    <div class="card-container">
+        <div class="card">
+            <h3>Approved Protection Schemes</h3>
+            <p>In England and Wales, landlords must use one of three government-approved deposit protection services:</p>
+            <ul>
+                <li>Deposit Protection Service (DPS)</li>
+                <li>MyDeposits</li>
+                <li>Tenancy Deposit Scheme (TDS)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Getting Your Deposit Back</h3>
+            <p>Once you both agree on the final amount, your landlord has 10 days to return it. Deductions are only permitted for:</p>
+            <ul>
+                <li>Unpaid rent</li>
+                <li>Damage beyond fair wear and tear</li>
+                <li>Items missing from the agreed inventory</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Deposit Cap Rules</h3>
+            <p>Since June 2019, deposit amounts have been legally capped:</p>
+            <ul>
+                <li>Up to 5 weeks' rent for annual rent under £50,000</li>
+                <li>Up to 6 weeks' rent for annual rent of £50,000 or more</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Repairs -->
+<section id="repairs" class="section alt">
+    <h2>🔧 Repairs &amp; Maintenance</h2>
+    <p>Your landlord has a legal duty to keep your home safe, structurally sound and in good repair.</p>
+    <div class="card-container">
+        <div class="card">
+            <h3>Landlord's Responsibilities</h3>
+            <ul>
+                <li>Structural repairs — walls, roof, windows, floors</li>
+                <li>Heating systems and hot water supply</li>
+                <li>Gas safety and electrical installations</li>
+                <li>Addressing damp or mould from structural causes</li>
+                <li>Dealing with pest infestations</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>How to Report a Repair</h3>
+            <ul>
+                <li>Always report in writing — email is ideal</li>
+                <li>Be specific: describe the problem clearly</li>
+                <li>Photograph or video the issue as evidence</li>
+                <li>Keep copies of all messages and responses</li>
+                <li>Note the date you first reported it</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>If Repairs Are Ignored</h3>
+            <ul>
+                <li>Send a formal written reminder with a deadline</li>
+                <li>Contact your local council's housing department</li>
+                <li>The council may inspect and enforce repairs</li>
+                <li>Seek independent legal or housing advice</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Eviction -->
+<section id="eviction" class="section">
+    <h2>🚪 Eviction</h2>
+    <p>Your landlord must follow a strict legal process to end your tenancy. Since the Renters' Rights Act 2025 came into force on 1 May 2026, tenants have significantly stronger protections.</p>
+    <div class="card-container">
+        <div class="card">
+            <h3>⚠️ Section 21 Has Been Abolished</h3>
+            <ul>
+                <li>As of 1 May 2026, Section 21 "no fault" evictions no longer exist</li>
+                <li>Your landlord cannot evict you simply because they want the property back</li>
+                <li>They must now have a specific legal reason to end your tenancy</li>
+                <li>Break clauses in older agreements can no longer be used to evict you</li>
+                <li>This applies to all private tenancies, new and existing</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Section 8 Notice</h3>
+            <ul>
+                <li>Now the only route for landlords to seek possession</li>
+                <li>Must cite a specific legal ground — e.g. rent arrears, anti-social behaviour, or the landlord genuinely moving back in</li>
+                <li>Notice period varies depending on the ground used</li>
+                <li>A court order is still required before any eviction can take place</li>
+                <li>Seek advice immediately if you receive a Section 8 notice</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Unlawful Eviction</h3>
+            <ul>
+                <li>Changing locks without a court order is illegal</li>
+                <li>Removing your belongings without consent is illegal</li>
+                <li>Harassment or intimidation is a criminal offence</li>
+                <li>Call 999 if you are physically removed from your home</li>
+                <li>You can also report unlawful eviction to your local council</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Agreements -->
+<section id="agreements" class="section alt">
+    <h2>📄 Tenancy Agreements</h2>
+    <p>Your tenancy agreement is a legally binding contract. Since 1 May 2026, all private tenancies in England are now Assured Tenancies — always read your agreement in full before signing.</p>
+    <div class="card-container">
+        <div class="card">
+            <h3>Your New Tenancy Type</h3>
+            <ul>
+                <li>Assured Shorthold Tenancies (ASTs) no longer exist from 1 May 2026</li>
+                <li>All private tenants now have Assured Tenancies (ATs)</li>
+                <li>Fixed-term tenancies have been abolished — all tenancies are now periodic (rolling)</li>
+                <li>You generally need to give your landlord 2 months' notice to leave</li>
+                <li>This gives you greater security and stronger protection from eviction</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Rent Increases</h3>
+            <ul>
+                <li>Your landlord can only raise your rent once per year</li>
+                <li>They must give you at least 2 months' written notice using the correct form</li>
+                <li>You have the right to challenge an increase you believe is above market rate</li>
+                <li>Contact a housing adviser if you feel a proposed increase is unfair</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Documents Your Landlord Must Provide</h3>
+            <ul>
+                <li>A signed copy of the tenancy agreement</li>
+                <li>A current Energy Performance Certificate (EPC)</li>
+                <li>A valid Gas Safety Record (if applicable)</li>
+                <li>The government's Renters' Rights Act Information Sheet (from May 2026)</li>
+                <li>Deposit protection confirmation and scheme details</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>New Rights Under the 2025 Act</h3>
+            <ul>
+                <li>Stronger right to request a pet — landlords cannot unreasonably refuse</li>
+                <li>Protection against discrimination if you have children or receive benefits</li>
+                <li>Access to a new Private Rental Sector Landlord Ombudsman</li>
+                <li>Landlords must meet the Decent Homes Standard</li>
+                <li>Awaab's Law applies — landlords must fix damp and mould within set timeframes</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Tools Section -->
+<section id="tools" class="section">
+    <h2>🛠️ Tenant Tools</h2>
+    <p>Practical tools to help you as a tenant — all free to use.</p>
+
+    <!-- Rent Calculator -->
+    <h3 style="text-align:center;color:#003366;margin-bottom:18px;font-size:1.3rem;">💷 Rent Increase Calculator</h3>
+    <div id="calculator">
+        <div class="calc-row">
+            <input type="number" id="currentRent" placeholder="Current monthly rent (£)" min="0" />
+            <input type="number" id="increasePercent" placeholder="Proposed increase (%)" min="0" max="100" />
+        </div>
+        <button class="calc-btn" onclick="calculateRent()">Calculate New Rent</button>
+        <div id="rent-result"></div>
+    </div>
+
+    <hr style="margin:50px auto;max-width:700px;border:none;border-top:2px solid #dde8ff;">
+
+    <!-- Letter Templates -->
+    <h3 style="text-align:center;color:#003366;margin-bottom:8px;font-size:1.3rem;">✉️ Letter Templates</h3>
+    <p style="text-align:center;color:#888;font-size:0.88rem;margin-bottom:22px;font-style:italic;">These are original template letters. Replace all [bracketed] sections with your own details before sending.</p>
+    <div class="letter-tabs">
+        <button class="tab-btn active" onclick="showLetter('repair')">Repair Request</button>
+        <button class="tab-btn" onclick="showLetter('deposit')">Deposit Dispute</button>
+        <button class="tab-btn" onclick="showLetter('notice')">Notice of Leaving</button>
+    </div>
+    <div id="letter-repair" class="letter-box active">[Your Full Name]
+[Your Address]
+[Town, Postcode]
+[Your Email Address]
+[Date]
+
+[Landlord's Full Name or Agency Name]
+[Landlord's Address]
+
+Dear [Landlord's Name],
+
+Re: Request for Repair — [Your Property Address]
+
+I am writing to formally notify you of a repair issue at the above property, which I have rented from you since [tenancy start date].
+
+The problem I am experiencing is as follows:
+
+[Describe the issue clearly — e.g. "The boiler has not been producing hot water since [date]. I reported this verbally on [date] but the issue has not been resolved."]
+
+As my landlord, you have a legal duty under the Landlord and Tenant Act 1985 to keep the property in good repair. I would be grateful if you could arrange for this matter to be inspected and resolved within [14 / 21] days of this letter.
+
+Please confirm receipt of this letter and let me know your intended course of action. I am happy to provide access to the property at a mutually convenient time.
+
+If I do not hear from you within the above timeframe, I may need to seek further assistance, including contacting my local council's housing department.
+
+Yours sincerely,
+
+[Your Full Name]
+[Your Contact Number]</div>
+    <div id="letter-deposit" class="letter-box">[Your Full Name]
+[Your Former Address]
+[Town, Postcode]
+[Your Email Address]
+[Date]
+
+[Landlord's Full Name or Agency Name]
+[Landlord's Address]
+
+Dear [Landlord's Name],
+
+Re: Deposit Dispute — [Former Property Address]
+
+I am writing regarding the deposit of £[amount] that I paid at the start of my tenancy, which began on [start date] and ended on [end date].
+
+I have not yet received a full refund of my deposit, and I do not agree with the deductions proposed. Specifically, I dispute the following:
+
+[List each disputed deduction, e.g. "£150 for cleaning — the property was professionally cleaned on [date] and I have a receipt to confirm this."]
+
+Under the terms of the Tenancy Deposit Protection scheme, I understand that I am entitled to raise a formal dispute if we cannot agree. I am therefore requesting that this matter be referred to the deposit scheme's free adjudication service.
+
+Please respond within 14 days to confirm your position. I have retained all relevant evidence, including the original inventory, photographs taken at the start and end of the tenancy, and all written communications between us.
+
+I hope we can resolve this matter promptly and without the need for further action.
+
+Yours sincerely,
+
+[Your Full Name]
+[Your Contact Number]</div>
+    <div id="letter-notice" class="letter-box">[Your Full Name]
+[Your Address]
+[Town, Postcode]
+[Your Email Address]
+[Date]
+
+[Landlord's Full Name or Agency Name]
+[Landlord's Address]
+
+Dear [Landlord's Name],
+
+Re: Notice to Vacate — [Property Address]
+
+I am writing to formally give notice that I intend to end my tenancy at the above address. In accordance with my tenancy agreement, I am giving [number] weeks' / months' notice.
+
+My intended move-out date is therefore: [date].
+
+I will ensure the property is left in a clean and tidy condition, matching the state described in the original inventory, and I will return all keys to you by [date].
+
+I would also like to arrange a check-out inspection at a mutually convenient time before my departure. Please let me know your available dates.
+
+Could you also confirm the process for returning my deposit of £[amount] once the property has been checked and any agreed costs settled.
+
+Thank you for our tenancy arrangement. Please confirm receipt of this notice in writing.
+
+Yours sincerely,
+
+[Your Full Name]
+[Your Contact Number]</div>
+    <div class="letter-actions">
+        <button class="letter-copy-btn" onclick="copyLetter()">📋 Copy Letter</button>
+        <button class="letter-reset-btn" onclick="clearSearch()">✕ Clear Search Highlights</button>
+    </div>
+    <p class="letter-note">⚠️ These templates are for general guidance only and do not constitute legal advice. Always replace placeholder text before using.</p>
+
+    <hr style="margin:50px auto;max-width:700px;border:none;border-top:2px solid #dde8ff;">
+
+    <!-- Checklists -->
+    <h3 style="text-align:center;color:#003366;margin-bottom:8px;font-size:1.3rem;">✅ Tenant Checklists</h3>
+    <div class="checklist-tabs letter-tabs">
+        <button class="tab-btn active" onclick="showChecklist('movein')">Moving In</button>
+        <button class="tab-btn" onclick="showChecklist('moveout')">Moving Out</button>
+    </div>
+    <div id="checklist-movein">
+        <p class="checklist-progress" id="movein-progress">Progress: <strong>0 / 10</strong> completed</p>
+        <div class="checklist-grid" id="movein-grid"></div>
+        <button class="checklist-reset-btn" onclick="resetChecklist('movein')">↺ Reset</button>
+    </div>
+    <div id="checklist-moveout" style="display:none;">
+        <p class="checklist-progress" id="moveout-progress">Progress: <strong>0 / 10</strong> completed</p>
+        <div class="checklist-grid" id="moveout-grid"></div>
+        <button class="checklist-reset-btn" onclick="resetChecklist('moveout')">↺ Reset</button>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section alt">
+    <h2>❓ Frequently Asked Questions</h2>
+    <p>Straightforward answers to common tenant questions.</p>
+    <div class="faq-list" id="faqList"></div>
+</section>
+
+<!-- Quiz -->
+<section id="quiz" class="section">
+    <h2>🧠 Know Your Rights Quiz</h2>
+    <p>Test your knowledge of UK tenant rights. 10 questions — see how you score!</p>
+    <div id="quiz-container">
+        <div class="quiz-counter" id="quizCounter"></div>
+        <div class="quiz-question-text" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <div class="quiz-nav">
+            <button class="quiz-btn" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+            <button class="quiz-btn" id="restartBtn" onclick="startQuiz()" style="background:#28a745;">Play Again</button>
+        </div>
+        <div class="quiz-score" id="quizScore"></div>
+    </div>
+</section>
+
+<!-- Get Help -->
+<section id="help" class="section alt">
+    <h2>📞 Where to Get Help</h2>
+    <p>You are not alone. The organisations below offer free, independent support to tenants.</p>
+    <div class="card-container">
+        <div class="card">
+            <h3>Citizens Advice</h3>
+            <p>Free, confidential guidance on housing, legal and financial matters across England and Wales.</p>
+            <p>🌐 www.citizensadvice.org.uk</p>
+            <p>📞 <span class="copy-target">0800 144 8848</span></p>
+            <button class="copy-btn" onclick="copyNumber(this, '0800 144 8848')">📋 Copy Number</button>
+        </div>
+        <div class="card">
+            <h3>Shelter</h3>
+            <p>A leading housing charity providing specialist housing advice and emergency support.</p>
+            <p>🌐 www.shelter.org.uk</p>
+            <p>📞 <span class="copy-target">0808 800 4444</span></p>
+            <button class="copy-btn" onclick="copyNumber(this, '0808 800 4444')">📋 Copy Number</button>
+        </div>
+        <div class="card">
+            <h3>Your Local Council</h3>
+            <p>Your local authority's housing team can assist with:</p>
+            <ul>
+                <li>Repair inspections and enforcement</li>
+                <li>Landlord licensing issues</li>
+                <li>Urgent or emergency housing help</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Share -->
+    <div style="text-align:center;margin-top:45px;">
+        <h3 style="color:#003366;margin-bottom:12px;font-size:1.1rem;">📢 Share this resource</h3>
+        <div class="share-row">
+            <button class="share-btn" onclick="shareNative()">📤 Share</button>
+            <button class="share-btn" onclick="copyPageUrl()">🔗 Copy Link</button>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>⚖️ <strong>UK Tenant Rights</strong></p>
+    <p>All content on this site is original and written for general informational purposes only.</p>
+    <p>This is not legal advice. Laws may change — always verify and consult a qualified solicitor.</p>
+    <p>Last updated: June 2026 | Reflects the Renters' Rights Act 2025 (in force from 1 May 2026)</p>
+    <p class="footer-copy">© <span id="footerYear"></span> UK Tenant Rights. All rights reserved. No content may be reproduced without permission.</p>
+    <p style="margin-top:12px;color:#7ab8ff;font-size:0.85rem;letter-spacing:1px;">A MAKISSST</p>
+</footer>
+
+<script>
+// ===== YEAR =====
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+// ===== DARK MODE =====
+const darkToggle = document.getElementById('darkToggle');
+darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    darkToggle.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+});
+
+// ===== PROGRESS BAR =====
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progressBar').style.width = (scrollTop / docHeight * 100) + '%';
+});
+
+// ===== NAV HIGHLIGHT =====
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 110) current = s.id; });
+    navLinks.forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+    });
+});
+
+// ===== CARD FADE IN =====
+const cardObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.card').forEach(c => cardObserver.observe(c));
+
+// ===== BACK TO TOP =====
+const backToTopBtn = document.createElement('button');
+backToTopBtn.innerText = '⬆ Top';
+backToTopBtn.id = 'backToTop';
+document.body.appendChild(backToTopBtn);
+window.addEventListener('scroll', () => {
+    backToTopBtn.style.display = window.scrollY > 400 ? 'block' : 'none';
+});
+backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ===== SEARCH =====
+document.getElementById('search-btn').addEventListener('click', runSearch);
+document.getElementById('search-input').addEventListener('keyup', e => { if (e.key === 'Enter') runSearch(); });
+function runSearch() {
+    const query = document.getElementById('search-input').value.trim().toLowerCase();
+    if (!query) return;
+    const allCards = document.querySelectorAll('.card');
+    let found = false;
+    allCards.forEach(card => {
+        if (card.innerText.toLowerCase().includes(query)) {
+            card.style.outline = '3px solid #0066cc';
+            card.style.backgroundColor = '#eef5ff';
+            if (!found) { card.scrollIntoView({ behavior: 'smooth', block: 'center' }); found = true; }
+        } else {
+            card.style.outline = '';
+            card.style.backgroundColor = '';
+        }
+    });
+    if (!found) alert(`No results found for "${query}". Try a different keyword.`);
+}
+function clearSearch() {
+    document.querySelectorAll('.card').forEach(c => { c.style.outline = ''; c.style.backgroundColor = ''; });
+    document.getElementById('search-input').value = '';
+}
+
+// ===== RENT CALCULATOR =====
+function calculateRent() {
+    const current = parseFloat(document.getElementById('currentRent').value);
+    const pct = parseFloat(document.getElementById('increasePercent').value);
+    const result = document.getElementById('rent-result');
+    if (isNaN(current) || isNaN(pct) || current <= 0 || pct < 0) {
+        result.style.display = 'block';
+        result.style.background = '#fdecea';
+        result.style.color = '#721c24';
+        result.textContent = 'Please enter valid numbers for both fields.';
+        return;
+    }
+    const newRent = (current * (1 + pct / 100)).toFixed(2);
+    const increase = (newRent - current).toFixed(2);
+    result.style.display = 'block';
+    result.style.background = '';
+    result.style.color = '';
+    result.textContent = `New monthly rent: £${newRent} (increase of £${increase} per month / £${(increase * 12).toFixed(2)} per year)`;
+}
+
+// ===== LETTER TABS =====
+let activeLetter = 'repair';
+function showLetter(id) {
+    activeLetter = id;
+    document.querySelectorAll('.letter-box').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.letter-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('letter-' + id).classList.add('active');
+    event.target.classList.add('active');
+}
+function copyLetter() {
+    const text = document.getElementById('letter-' + activeLetter).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.letter-copy-btn');
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => btn.textContent = '📋 Copy Letter', 2000);
+    });
+}
+
+// ===== CHECKLISTS =====
+const checklistData = {
+    movein: [
+        'Check the property matches the description in your agreement',
+        'Complete and sign the move-in inventory with your landlord',
+        'Photograph every room and all existing damage',
+        'Test all locks, windows and smoke alarms',
+        'Confirm your deposit has been placed in a protection scheme',
+        'Obtain copies of the Gas Safety Certificate and EPC',
+        'Take meter readings for gas, electricity and water',
+        'Note the name and contact details of your landlord or agent',
+        'Check broadband and mobile signal coverage',
+        'Ensure you have been given all relevant keys and fobs'
+    ],
+    moveout: [
+        'Give written notice to your landlord in line with your agreement',
+        'Clean the property thoroughly including oven, windows and bathrooms',
+        'Remove all of your belongings and dispose of all rubbish',
+        'Fill minor screw holes and touch up paint where agreed',
+        'Take final meter readings and notify your utility suppliers',
+        'Redirect your post to your new address',
+        'Return all keys, fobs and parking permits',
+        'Attend or arrange a check-out inspection with your landlord',
+        'Photograph the property on your final day for your records',
+        'Confirm your forwarding address for deposit return purposes'
+    ]
+};
+let activeChecklist = 'movein';
+
+function buildChecklist(id) {
+    const grid = document.getElementById(id + '-grid');
+    grid.innerHTML = '';
+    checklistData[id].forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'checklist-item';
+        div.id = id + '-item-' + i;
+        div.innerHTML = `<input type="checkbox" id="${id}-cb-${i}" onchange="updateChecklist('${id}')"><label for="${id}-cb-${i}">${item}</label>`;
+        grid.appendChild(div);
+    });
+    updateChecklist(id);
+}
+function updateChecklist(id) {
+    const boxes = document.querySelectorAll(`#${id}-grid input[type=checkbox]`);
+    let done = 0;
+    boxes.forEach((cb, i) => {
+        const item = document.getElementById(id + '-item-' + i);
+        if (cb.checked) { done++; item.classList.add('done'); }
+        else item.classList.remove('done');
+    });
+    document.getElementById(id + '-progress').innerHTML = `Progress: <strong>${done} / ${boxes.length}</strong> completed`;
+}
+function resetChecklist(id) {
+    document.querySelectorAll(`#${id}-grid input[type=checkbox]`).forEach(cb => cb.checked = false);
+    updateChecklist(id);
+}
+function showChecklist(id) {
+    activeChecklist = id;
+    document.getElementById('checklist-movein').style.display = id === 'movein' ? 'block' : 'none';
+    document.getElementById('checklist-moveout').style.display = id === 'moveout' ? 'block' : 'none';
+    document.querySelectorAll('.checklist-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+}
+buildChecklist('movein');
+buildChecklist('moveout');
+
+// ===== FAQ =====
+const faqs = [
+    { q: 'Can my landlord enter my home without notice?', a: 'Generally, your landlord must give you at least 24 hours\' written notice before entering the property, and only at a reasonable time. Entering without notice could amount to harassment, which is unlawful.' },
+    { q: 'What is "fair wear and tear"?', a: 'Fair wear and tear refers to the natural deterioration that occurs through normal, everyday use of a property. Landlords cannot deduct from your deposit for this. Examples include minor scuffs on walls or faded carpet from regular footfall.' },
+    { q: 'Can my landlord increase my rent whenever they want?', a: 'Not without following the correct process. If you are in a fixed-term tenancy, rent can usually only be increased at renewal unless your agreement says otherwise. For periodic tenancies, landlords must give you proper notice in writing.' },
+    { q: 'Do I have to pay for repairs myself?', a: 'It depends on the cause. Landlords are responsible for structural repairs and maintaining key systems. However, you may be responsible for minor damage caused by your own misuse or neglect. Always check your agreement and seek advice if unsure.' },
+    { q: 'What should I do if I receive an eviction notice?', a: 'Do not ignore it. Read the notice carefully and seek advice quickly. Many notices contain errors that make them invalid. Contact a housing charity or legal adviser immediately — you may have more time and options than you think.' },
+    { q: 'Is my landlord allowed to keep my whole deposit?', a: 'Only in extreme cases. Landlords can only deduct amounts they can justify with evidence. If you dispute deductions, you can raise a free adjudication claim through the deposit protection scheme. Always request an itemised breakdown.' },
+    { q: 'What if my landlord refuses to fix a dangerous fault?', a: 'You should report it to your local council\'s environmental health team. They have powers to inspect the property and order repairs. Do not withhold rent without legal advice, as this can have unintended consequences.' },
+    { q: 'Can I sublet my room or property?', a: 'Only if your tenancy agreement permits it and your landlord has given written consent. Subletting without permission is likely a breach of your tenancy and could lead to eviction.' }
+];
+const faqList = document.getElementById('faqList');
+faqs.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'faq-item';
+    div.innerHTML = `<button class="faq-question" onclick="toggleFaq(${i})"><span>${item.q}</span><span class="faq-icon">+</span></button><div class="faq-answer">${item.a}</div>`;
+    faqList.appendChild(div);
+});
+function toggleFaq(i) {
+    const items = document.querySelectorAll('.faq-item');
+    items[i].classList.toggle('open');
+}
+
+// ===== QUIZ =====
+const quizData = [
+    { q: 'How many days does a landlord have to protect your deposit?', options: ['14 days', '30 days', '60 days', '7 days'], answer: 1, explanation: 'Your landlord must protect your deposit within 30 days of receiving it.' },
+    { q: 'What is the minimum notice period for a Section 21 eviction?', options: ['1 month', '3 months', '2 months', '6 weeks'], answer: 2, explanation: 'A Section 21 notice requires a minimum of 2 months\' notice.' },
+    { q: 'Who is responsible for repairing a broken boiler?', options: ['The tenant', 'The landlord', 'The letting agent', 'The local council'], answer: 1, explanation: 'Landlords are legally responsible for maintaining heating systems.' },
+    { q: 'What is the deposit cap for annual rent under £50,000?', options: ['4 weeks', '6 weeks', '3 weeks', '5 weeks'], answer: 3, explanation: 'Since June 2019, the cap is 5 weeks\' rent for properties under £50,000 per year.' },
+    { q: 'Is it legal for a landlord to change your locks without a court order?', options: ['Yes, with 24 hours\' notice', 'Yes, if rent is unpaid', 'No, it is unlawful eviction', 'Only in emergencies'], answer: 2, explanation: 'Changing locks without a court order is illegal regardless of the circumstances.' },
+    { q: 'What should you always do when reporting a repair to your landlord?', options: ['Call them only', 'Report it in writing and keep records', 'Wait for them to notice', 'Ask a neighbour to tell them'], answer: 1, explanation: 'Written reports create a paper trail and protect your legal position.' },
+    { q: 'How long does a landlord have to return your deposit after you agree the final amount?', options: ['28 days', '14 days', '10 days', '30 days'], answer: 2, explanation: 'Your landlord must return the agreed deposit within 10 days.' },
+    { q: 'Which of these is NOT one of the three government-approved deposit schemes?', options: ['MyDeposits', 'Deposit Protection Service', 'National Deposit Shield', 'Tenancy Deposit Scheme'], answer: 2, explanation: 'The three schemes are DPS, MyDeposits and TDS. National Deposit Shield does not exist.' },
+    { q: 'What does "fair wear and tear" mean?', options: ['Any damage caused by the tenant', 'Normal deterioration from everyday use', 'Repairs the tenant must pay for', 'Damage covered by insurance'], answer: 1, explanation: 'Fair wear and tear is normal deterioration — landlords cannot deduct this from your deposit.' },
+    { q: 'What is required before a landlord can legally evict you?', options: ['A phone call', 'A letter', 'A court order', 'Agreement from the council'], answer: 2, explanation: 'A court order is required before a landlord can legally evict a tenant.' }
+];
+
+let currentQ = 0, score = 0, answered = false;
+
+function startQuiz() {
+    currentQ = 0; score = 0; answered = false;
+    document.getElementById('quizScore').style.display = 'none';
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('restartBtn').style.display = 'none';
+    renderQuestion();
+}
+
+function renderQuestion() {
+    const q = quizData[currentQ];
+    document.getElementById('quizCounter').textContent = `Question ${currentQ + 1} of ${quizData.length}`;
+    document.getElementById('quizQuestion').textContent = q.q;
+    const feedback = document.getElementById('quizFeedback');
+    feedback.className = 'quiz-feedback';
+    feedback.textContent = '';
+    answered = false;
+    const optDiv = document.getElementById('quizOptions');
+    optDiv.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.textContent = opt;
+        btn.onclick = () => selectAnswer(i);
+        optDiv.appendChild(btn);
+    });
+    document.getElementById('nextBtn').style.display = 'none';
+}
+
+function selectAnswer(i) {
+    if (answered) return;
+    answered = true;
+    const q = quizData[currentQ];
+    const opts = document.querySelectorAll('.quiz-option');
+    opts.forEach((btn, idx) => {
+        btn.onclick = null;
+        if (idx === q.answer) btn.classList.add('correct');
+        else if (idx === i) btn.classList.add('wrong');
+    });
+    const feedback = document.getElementById('quizFeedback');
+    feedback.classList.add('show');
+    if (i === q.answer) {
+        score++;
+        feedback.className = 'quiz-feedback show correct';
+        feedback.textContent = '✓ Correct! ' + q.explanation;
+    } else {
+        feedback.className = 'quiz-feedback show wrong';
+        feedback.textContent = '✗ Not quite. ' + q.explanation;
+    }
+    const nextBtn = document.getElementById('nextBtn');
+    nextBtn.style.display = 'inline-block';
+    nextBtn.textContent = currentQ < quizData.length - 1 ? 'Next Question →' : 'See My Score';
+}
+
+function nextQuestion() {
+    currentQ++;
+    if (currentQ < quizData.length) {
+        renderQuestion();
+    } else {
+        document.getElementById('quizOptions').innerHTML = '';
+        document.getElementById('quizQuestion').textContent = '';
+        document.getElementById('quizCounter').textContent = '';
+        document.getElementById('quizFeedback').className = 'quiz-feedback';
+        document.getElementById('nextBtn').style.display = 'none';
+        document.getElementById('restartBtn').style.display = 'inline-block';
+        const scoreDiv = document.getElementById('quizScore');
+        scoreDiv.style.display = 'block';
+        let msg = score >= 8 ? '🏆 Excellent!' : score >= 5 ? '👍 Good effort!' : '📚 Keep learning!';
+        scoreDiv.innerHTML = `${msg}<br>You scored <strong>${score} out of ${quizData.length}</strong>.`;
+    }
+}
+
+startQuiz();
+
+// ===== COPY PHONE NUMBER =====
+function copyNumber(btn, number) {
+    navigator.clipboard.writeText(number).then(() => {
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = '📋 Copy Number'; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+// ===== SHARE =====
+function shareNative() {
+    if (navigator.share) {
+        navigator.share({ title: 'UK Tenant Rights', text: 'Free tenant rights guidance for England and Wales', url: window.location.href });
+    } else { copyPageUrl(); }
+}
+function copyPageUrl() {
+    navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied to clipboard!'));
+}
+</script>
+</body>
+</html>
